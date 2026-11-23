@@ -1,3 +1,3 @@
 - insert:
-    - id: pose-studio
-      name: dsh-plugin-pose-studio
+    - id: pose-studio-custom
+      name: dsh-caotang-style

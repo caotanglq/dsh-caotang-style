@@ -1,5 +1,5 @@
 {
-  "name": "dsh-plugin-pose-studio",
+  "name": "dsh-caotang-style",
   "version": "0.7.9",
   "type": "module",
   "main": "./host.js",
