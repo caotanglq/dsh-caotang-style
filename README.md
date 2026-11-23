@@ -28,11 +28,11 @@
 
 对 DeepSeek 说这一句就行：
 
-> 帮我安装插件：https://github.com/yang0/dsh-handraw-style
+> 帮我安装插件：https://github.com/caotanglq/dsh-caotang-style
 
 它会把插件装好并提醒你启用。启用后左栏点 **草堂生图工坊** 就能用。
 
-想自己点也行：DSH 左栏 **插件** → **添加插件** → **安装第三方插件**，粘上面的仓库地址；或者命令行 `dsh plugin --profile web add "github:yang0/dsh-handraw-style"`。
+想自己点也行：DSH 左栏 **插件** → **添加插件** → **安装第三方插件**，粘上面的仓库地址；或者命令行 `dsh plugin --profile web add "github:caotanglq/dsh-caotang-style"`。安装后在左栏打开 **草堂生图工坊**。
 
 ## 开始出图
 
