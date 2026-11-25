@@ -268,7 +268,14 @@ const maxGeneratedImage = 32 * 1024 * 1024;
 
 function imageOptions(model, body) {
   const base = baseModelName(model);
-  const requestedSize = ['1024x1024', '1024x1536', '1536x1024'].includes(body.size) ? body.size : defaults.size;
+  const gptImageModel = /^(?:gpt-image|chatgpt-image|gpt-4o-image|gpt-5-image)/.test(base);
+  const customSize = typeof body.size === 'string' && (() => {
+    const match = /^(\d{2,4})x(\d{2,4})$/.exec(body.size);
+    if (!match) return false;
+    const width = Number(match[1]), height = Number(match[2]);
+    return width % 16 === 0 && height % 16 === 0 && width <= 3840 && height <= 3840 && width / height >= 1 / 3 && width / height <= 3;
+  })();
+  const requestedSize = ['1024x1024', '1024x1536', '1536x1024'].includes(body.size) || gptImageModel && customSize ? body.size : defaults.size;
   const requestedQuality = ['low', 'medium', 'high'].includes(body.quality) ? body.quality : defaults.quality;
   if (base.startsWith('dall-e-2') || base.startsWith('dalle-2')) {
     return { model, size: '1024x1024', response_format: 'b64_json' };
@@ -281,7 +288,7 @@ function imageOptions(model, body) {
       response_format: 'b64_json',
     };
   }
-  if (/^(?:gpt-image|chatgpt-image|gpt-4o-image|gpt-5-image)/.test(base)) {
+  if (gptImageModel) {
     return { model, size: requestedSize, quality: requestedQuality };
   }
   return { model, size: requestedSize };
